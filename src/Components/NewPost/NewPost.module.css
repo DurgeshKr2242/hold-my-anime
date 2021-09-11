@@ -1,0 +1,23 @@
+.newPost {
+  min-width: 600px;
+  padding: 10px;
+  border: 1px solid rgb(99, 96, 96);
+  border-radius: 20px;
+  outline: none;
+  letter-spacing: 0.7px;
+  font-weight: 1000px;
+  text-align: left;
+  cursor: pointer;
+  background-color: white;
+  color: rgb(99, 96, 96);
+}
+.newPost:hover,
+.newPost:focus {
+  background-color: #f3f2ef;
+}
+
+.buttonArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
