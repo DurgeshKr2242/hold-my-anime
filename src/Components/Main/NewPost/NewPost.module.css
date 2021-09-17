@@ -1,4 +1,4 @@
-.newPost {
+.newPostButton {
   min-width: 600px;
   padding: 10px;
   border: 1px solid rgb(99, 96, 96);
@@ -11,13 +11,14 @@
   background-color: white;
   color: rgb(99, 96, 96);
 }
-.newPost:hover,
-.newPost:focus {
+.newPostButton:hover,
+.newPostButton:focus {
   background-color: #f3f2ef;
 }
 
 .buttonArea {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  margin-top: 15px;
 }

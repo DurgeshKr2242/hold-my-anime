@@ -1,11 +1,22 @@
 import "./App.css";
-import NewPost from "./Components/NewPost/NewPost";
+import Main from "./Components/Main/Main";
+import Navbar from "./Components/Navbar/Navbar";
+import SideBar from "./Components/Sidebar Left/SideBar";
 
 function App() {
   return (
     <div>
-      <h1>HELLO</h1>
-      <NewPost />
+      <div className="navbar">
+        <Navbar />
+      </div>
+      <div className="row">
+        <div className="col1">
+          <SideBar />
+        </div>
+        <div className="col2">
+          <Main />
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,82 @@
+.profileContainer {
+  padding: 20px;
+  margin-top: 150px;
+  max-width: 380px;
+  overflow: hidden;
+}
+.pfp {
+  display: flex;
+  justify-content: center;
+}
+.pfp img {
+  object-fit: cover;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px,
+    rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px,
+    rgba(240, 46, 170, 0.05) 25px 25px;
+}
+.pfp img:hover {
+  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px,
+    rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px,
+    rgba(240, 46, 170, 0.05) 0px 25px;
+}
+.pfpInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.name {
+  text-align: center;
+  overflow: hidden;
+  display: inline-block;
+  font-size: 27px;
+  font-family: sans-serif;
+  margin: 1px;
+  cursor: pointer;
+  position: relative;
+  margin-top: 30px;
+}
+.name {
+  cursor: pointer;
+  padding: 10px;
+  color: #0000;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff3d7f 50%, #000 0) right/200% 100%
+    no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: 0.3s linear;
+}
+.name:hover {
+  background-position: left;
+}
+.name:before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 100%;
+  height: 4px;
+  background: #ff3d7f;
+  transition: inherit;
+}
+.name:hover:before {
+  inset: auto 0 0 0;
+}
+
+.status {
+  color: rgb(68, 68, 68);
+}
+
+.desc {
+  color: rgb(68, 68, 68);
+}
+.btn2 {
+  margin-left: 10px;
+}
+.friendContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
