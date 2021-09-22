@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&display=swap");
+
+.formContainer {
+  font-family: "Comfortaa", cursive;
+  padding: 1px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f2ef;
+  color: black;
+}
+
+.formLogo {
+  object-fit: cover;
+  width: 150px;
+  cursor: pointer;
+}
+
+.formInput {
+  font-family: "Comfortaa", cursive;
+  /* padding: 10px; */
+  margin-top: 30px;
+}
+
+.btnn {
+  margin-top: 30px;
+  display: block;
+}

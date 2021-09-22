@@ -2,25 +2,21 @@ import { Button, Paper } from "@material-ui/core";
 import React from "react";
 import data from "./ProfileData";
 import styles from "./ProfileBanner.module.css";
-
+import { useGlobalAuthContext } from "../../../AuthContext";
 const ProfileBanner = () => {
-  const {
-    name,
-    pfpUrl,
-    status,
-    watching,
-    totalEntries,
-    avgRating,
-    totalFriends,
-  } = data;
+  const { user } = useGlobalAuthContext();
+  // const [name, setName] = useState(username);
+  const { pfpUrl, status, watching, totalEntries, avgRating, totalFriends } =
+    data;
   return (
     <>
+      {/* {console.log("hii")} */}
       <Paper className={styles.profileContainer} elevation={5}>
         <div className={styles.pfp}>
           <img src={pfpUrl} alt="" />
         </div>
         <div className={styles.pfpInfo}>
-          <h3 className={styles.name}>{name}</h3>
+          <h3 className={styles.name}>{user ? user.displayName : ""}</h3>
           <p className={styles.status}>{status}</p>
         </div>
         <hr />

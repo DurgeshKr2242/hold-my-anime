@@ -1,23 +1,39 @@
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Main from "./Components/Main/Main";
+import LoginSignup from "./Components/Navbar/LoginSignup";
 import Navbar from "./Components/Navbar/Navbar";
 import SideBar from "./Components/Sidebar Left/SideBar";
-
+import { auth, db } from "./firebase";
+import { AuthProvider } from "./AuthContext";
 function App() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setPosts(
+          snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
+        );
+      });
+  }, [posts]);
   return (
-    <div>
-      <div className="navbar">
-        <Navbar />
-      </div>
-      <div className="row">
-        <div className="col1">
-          <SideBar />
+    <AuthProvider>
+      <div>
+        <div className="navbar">
+          <Navbar />
         </div>
-        <div className="col2">
-          <Main />
+        <div className="row">
+          <div className="col1">
+            <SideBar />
+          </div>
+          <div className="col2">
+            <Main posts={posts} />
+          </div>
         </div>
       </div>
-    </div>
+    </AuthProvider>
   );
 }
 

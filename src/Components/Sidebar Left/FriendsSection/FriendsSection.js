@@ -9,11 +9,11 @@ const FriendsSection = () => {
   return (
     <>
       <Paper elevation={5} className={styles.mainContainer}>
-        {friends.map((data) => {
-          console.log("HELLO");
+        {friends.map((data, index) => {
+          // console.log("HELLO");
           const { name, watching, likes } = data;
           return (
-            <div className={styles.friendContainer}>
+            <div key={index} className={styles.friendContainer}>
               <Friend name={name} watching={watching} likes={likes} />
             </div>
           );

@@ -2,13 +2,15 @@ import { Paper } from "@material-ui/core";
 import React, { useState } from "react";
 import styles from "./SeriesPost.module.css";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-
+import Button from "@mui/material/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { FaSkullCrossbones } from "react-icons/fa";
+import firebase from "firebase";
+import { db, storage } from "../../../firebase";
+import { useGlobalAuthContext } from "../../../AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,23 +21,90 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SeriesPost = ({ updateFeed, handleToggle }) => {
+const SeriesPost = (props) => {
   const classes = useStyles();
   const [rating, setRating] = useState(2.5);
   const [name, setName] = useState("");
-  const [picUrl, setPicUrl] = useState("");
+  const [image, setImage] = useState(null);
   const [quote, setQuote] = useState("");
   const [favChar, setFavChar] = useState("");
   const [note, setNote] = useState("");
   const [showBackdrop, setShowBackdrop] = useState(true);
+  const [progress, setProgress] = useState(0);
 
-  const submitHandler = (event) => {
-    event.preventDefault();
+  const { user } = useGlobalAuthContext();
 
-    updateFeed({ name, picUrl, quote, favChar, note, rating });
-    handleToggle();
-    setShowBackdrop(false);
+  const handleChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
   };
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(progress);
+      },
+      (error) => {
+        console.log(error);
+        alert(error.message);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            //post image inside db
+            db.collection("posts").add({
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              favChar: favChar,
+              name: name,
+              imageUrl: url,
+              rating: rating,
+              quote: quote,
+              note: note,
+              username: user.displayName,
+            });
+
+            setProgress(0);
+            setFavChar("");
+            setImage(null);
+            setName("");
+            setRating(2.5);
+            setQuote("");
+            setNote("");
+            props.handleToggle();
+            setShowBackdrop(false);
+          });
+      }
+    );
+  };
+  // console.log(firebase.firestore.FieldValue.serverTimestamp());
+
+  // const submitHandler = (event) => {
+  //   event.preventDefault();
+
+  //   updateFeed({
+  //     name,
+  //     picUrl,
+  //     quote,
+  //     favChar,
+  //     note,
+  //     rating,
+  //     likes,
+  //     comments,
+  //   });
+  //   handleToggle();
+  //   setShowBackdrop(false);
+  // };
 
   return (
     <div>
@@ -51,7 +120,7 @@ const SeriesPost = ({ updateFeed, handleToggle }) => {
             <div className={styles.cross}>
               <FaSkullCrossbones
                 onClick={() => {
-                  handleToggle();
+                  props.handleToggle();
                   setShowBackdrop(false);
                 }}
               />
@@ -70,8 +139,7 @@ const SeriesPost = ({ updateFeed, handleToggle }) => {
                 }}
               />
             </Box>
-            <form className={classes.root} onSubmit={submitHandler}>
-              {/* <label htmlFor="name">Name</label> */}
+            <form className={classes.root}>
               <TextField
                 className={styles.text1}
                 variant="outlined"
@@ -84,8 +152,20 @@ const SeriesPost = ({ updateFeed, handleToggle }) => {
                 }}
               />
 
-              {/* <label htmlFor="pic-url">Picture Url</label> */}
-              <TextField
+              {/* <label htmlFor="contained-button-file">
+                <Input
+                  accept="image/*"
+                  id="contained-button-file"
+                  multiple
+                  type="file"
+                  onChange={handleChange}
+                />
+                <Button variant="contained" component="span">
+                  Upload
+                </Button>
+              </label> */}
+              <input type="file" onChange={handleChange} />
+              {/* <TextField
                 className={styles.text2}
                 variant="outlined"
                 label="Pic URL"
@@ -95,9 +175,8 @@ const SeriesPost = ({ updateFeed, handleToggle }) => {
                 onChange={(event) => {
                   setPicUrl(event.target.value);
                 }}
-              />
+              /> */}
 
-              {/* <label htmlFor="quote">Quote</label> */}
               <br />
               <TextField
                 className={styles.text3}
@@ -111,7 +190,6 @@ const SeriesPost = ({ updateFeed, handleToggle }) => {
                 }}
               />
 
-              {/* <label htmlFor="fav-char">Fav Char</label> */}
               <TextField
                 className={styles.text4}
                 variant="outlined"
@@ -125,7 +203,6 @@ const SeriesPost = ({ updateFeed, handleToggle }) => {
               />
               <br />
 
-              {/* <label htmlFor="note">Your Viewes</label> */}
               <TextField
                 className={styles.text5}
                 multiline
@@ -144,9 +221,15 @@ const SeriesPost = ({ updateFeed, handleToggle }) => {
                 className={styles.button}
                 variant="contained"
                 type="submit"
+                onClick={handleUpload}
               >
-                Add
+                Upload
               </Button>
+              <progress
+                className="imageupload__progress"
+                value={progress}
+                max="100"
+              />
             </form>
           </Paper>
         </div>
