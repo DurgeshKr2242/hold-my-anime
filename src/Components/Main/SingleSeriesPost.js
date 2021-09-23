@@ -36,6 +36,7 @@ const SingleSeriesPost = forwardRef(
           .collection("posts")
           .doc(postId)
           .collection("comments")
+          .orderBy("timestamp", "asc")
           .onSnapshot((snapshot) => {
             setComments(snapshot.docs.map((doc) => doc.data()));
           });
@@ -52,6 +53,7 @@ const SingleSeriesPost = forwardRef(
       db.collection("posts").doc(postId).collection("comments").add({
         text: comment,
         username: user.displayName,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
       setComment("");
     };
