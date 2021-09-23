@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Main from "./Components/Main/Main";
-import LoginSignup from "./Components/Navbar/LoginSignup";
 import Navbar from "./Components/Navbar/Navbar";
 import SideBar from "./Components/Sidebar Left/SideBar";
-import { auth, db } from "./firebase";
+// import { db } from "./firebase";
 import { AuthProvider } from "./AuthContext";
 function App() {
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    db.collection("posts")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) => {
-        setPosts(
-          snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
-        );
-      });
-  }, [posts]);
+  // useEffect(() => {
+  //   db.collection("posts")
+  //     .orderBy("timestamp", "desc")
+  //     .onSnapshot((snapshot) => {
+  //       setPosts(
+  //         snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
+  //       );
+  //     });
+  // }, [posts]);
+
   return (
     <AuthProvider>
       <div>
@@ -29,7 +29,7 @@ function App() {
             <SideBar />
           </div>
           <div className="col2">
-            <Main posts={posts} />
+            <Main />
           </div>
         </div>
       </div>

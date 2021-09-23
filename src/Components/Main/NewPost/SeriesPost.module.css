@@ -1,10 +1,14 @@
-.cross {
+.header {
   display: flex;
-  justify-content: flex-end;
-  z-index: 100;
+  justify-content: space-between;
+  /* padding: 0 0 0 10px; */
+  color: rgb(145, 141, 141);
+  border-bottom: 1px solid lightgray;
+}
+.cross {
   font-size: 30px;
-  /* position: inherit; */
   cursor: pointer;
+  color: black;
 }
 .backdrop {
   position: fixed;
@@ -25,34 +29,59 @@
 }
 
 .backdropContainer {
-  padding: 40px;
-  max-height: 400px;
-  background-color: white;
+  /* max-height: 400px; */
+  /* background-color: white; */
   color: black;
 }
+
 .inputContainer {
-  padding-right: 40px;
+  /* padding-right: 40px; */
   padding-top: 20px;
+  width: 100%;
+  max-width: 600px;
+  /* height: 100%; */
+
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+.textFields {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.text1 {
-  width: 45%;
-  /* display: inline; */
+.postContainer {
+  display: flex;
+  flex-direction: column;
 }
-.text2 {
-  width: 40%;
-}
-.text3 {
-  /* display: block; */
-  /* width: 100%; */
-  min-width: 680px;
-}
-.text4 {
-  width: 300px;
-}
-.text5 {
+.textt {
+  margin-top: 30px;
   width: 100%;
 }
+.actionArea {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .text1 {
+  width: 45%;
+  /* display: inline; */
+/* } */
+/* .text2 { */
+/* width: 40%; */
+/* } */
+/* .text3 { */
+/* display: block; */
+/* width: 100%; */
+/* min-width: 680px; */
+/* }/ */
+/* .text4 { */
+/* width: 300px; */
+/* } */
+/* .text5 { */
+/* width: 100%; */
+/* } */
 /* .button {
   display: block;
 } */

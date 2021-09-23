@@ -31,6 +31,7 @@ const SeriesPost = (props) => {
   const [note, setNote] = useState("");
   const [showBackdrop, setShowBackdrop] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [url, setUrl] = useState("");
 
   const { user } = useGlobalAuthContext();
 
@@ -40,38 +41,40 @@ const SeriesPost = (props) => {
     }
   };
 
-  const handleUpload = (e) => {
-    e.preventDefault();
+  const handleUpload = () => {
+    // e.preventDefault();
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
-
     uploadTask.on(
       "state_changed",
       (snapshot) => {
+        // progress function ...
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
         setProgress(progress);
       },
       (error) => {
+        // Error function ...
         console.log(error);
-        alert(error.message);
       },
       () => {
+        // complete function ...
         storage
           .ref("images")
           .child(image.name)
           .getDownloadURL()
           .then((url) => {
+            setUrl(url);
             //post image inside db
             db.collection("posts").add({
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              imageUrl: url,
               favChar: favChar,
               name: name,
-              imageUrl: url,
               rating: rating,
               quote: quote,
               note: note,
               username: user.displayName,
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             });
 
             setProgress(0);
@@ -139,20 +142,20 @@ const SeriesPost = (props) => {
                 }}
               />
             </Box>
-            <form className={classes.root}>
-              <TextField
-                className={styles.text1}
-                variant="outlined"
-                label="Which awesome Anime?"
-                type="text"
-                id="name"
-                value={name}
-                onChange={(event) => {
-                  setName(event.target.value);
-                }}
-              />
+            {/* <form className={classes.root}> */}
+            <TextField
+              className={styles.text1}
+              variant="outlined"
+              label="Which awesome Anime?"
+              type="text"
+              id="name"
+              value={name}
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
 
-              {/* <label htmlFor="contained-button-file">
+            {/* <label htmlFor="contained-button-file">
                 <Input
                   accept="image/*"
                   id="contained-button-file"
@@ -164,8 +167,8 @@ const SeriesPost = (props) => {
                   Upload
                 </Button>
               </label> */}
-              <input type="file" onChange={handleChange} />
-              {/* <TextField
+            <input type="file" onChange={handleChange} />
+            {/* <TextField
                 className={styles.text2}
                 variant="outlined"
                 label="Pic URL"
@@ -177,60 +180,59 @@ const SeriesPost = (props) => {
                 }}
               /> */}
 
-              <br />
-              <TextField
-                className={styles.text3}
-                variant="outlined"
-                label="Quote that touched your soul"
-                type="text"
-                id="quote"
-                value={quote}
-                onChange={(event) => {
-                  setQuote(event.target.value);
-                }}
-              />
+            <br />
+            <TextField
+              className={styles.text3}
+              variant="outlined"
+              label="Quote that touched your soul"
+              type="text"
+              id="quote"
+              value={quote}
+              onChange={(event) => {
+                setQuote(event.target.value);
+              }}
+            />
 
-              <TextField
-                className={styles.text4}
-                variant="outlined"
-                label="Character you simp for?"
-                type="text"
-                id="fav-char"
-                value={favChar}
-                onChange={(event) => {
-                  setFavChar(event.target.value);
-                }}
-              />
-              <br />
+            <TextField
+              className={styles.text4}
+              variant="outlined"
+              label="Character you simp for?"
+              type="text"
+              id="fav-char"
+              value={favChar}
+              onChange={(event) => {
+                setFavChar(event.target.value);
+              }}
+            />
+            <br />
 
-              <TextField
-                className={styles.text5}
-                multiline
-                rows={4}
-                variant="outlined"
-                label="Describe"
-                type="text"
-                id="note"
-                value={note}
-                onChange={(event) => {
-                  setNote(event.target.value);
-                }}
-              />
-              <br />
-              <Button
-                className={styles.button}
-                variant="contained"
-                type="submit"
-                onClick={handleUpload}
-              >
-                Upload
-              </Button>
-              <progress
-                className="imageupload__progress"
-                value={progress}
-                max="100"
-              />
-            </form>
+            <TextField
+              className={styles.text5}
+              multiline
+              rows={4}
+              variant="outlined"
+              label="Describe"
+              type="text"
+              id="note"
+              value={note}
+              onChange={(event) => {
+                setNote(event.target.value);
+              }}
+            />
+            <br />
+            <Button
+              className={styles.button}
+              variant="contained"
+              type="submit"
+              onClick={handleUpload}
+            >
+              Upload
+            </Button>
+            <progress
+              className="imageupload__progress"
+              value={progress}
+              max="100"
+            />
           </Paper>
         </div>
       </div>

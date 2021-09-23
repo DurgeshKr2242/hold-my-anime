@@ -1,46 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NewPost from "./NewPost/NewPost";
 import styles from "./Main.module.css";
 import SingleSeriesPost from "./SingleSeriesPost";
+import FlipMove from "react-flip-move";
+import { db } from "../../firebase";
 
-const Main = (props) => {
-  const likesHandler = () => {};
-  const commentsHandler = () => {};
+const Main = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setPosts(snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })))
+      );
+  }, []);
 
   return (
     <div className={styles.mainContainer}>
-      <NewPost
-        // updateFeed={updateFeedHandler}
-        likesHandler={likesHandler}
-        commentsHandler={commentsHandler}
-      />
+      <NewPost />
 
       <div className={styles.feedss}>
-        {props.posts.map(({ id, post }) => {
-          var today = new Date(),
-            date =
-              today.getFullYear() +
-              "-" +
-              (today.getMonth() + 1) +
-              "-" +
-              today.getDate();
-          // console.log("hii");
-          return (
-            <SingleSeriesPost
-              name={post.name}
-              imageUrl={post.imageUrl}
-              quote={post.quote}
-              favChar={post.favChar}
-              note={post.note}
-              key={id}
-              postId={id}
-              rating={post.rating}
-              likes={post.likes}
-              date={date}
-              username={post.username}
-            />
-          );
-        })}
+        <FlipMove>
+          {posts.map(({ id, post }) => {
+            // var today = new Date(),
+            //   date =
+            //     today.getFullYear() +
+            //     "-" +
+            //     (today.getMonth() + 1) +
+            //     "-" +
+            //     today.getDate();
+            return (
+              <SingleSeriesPost
+                name={post.name}
+                imageUrl={post.imageUrl}
+                quote={post.quote}
+                favChar={post.favChar}
+                note={post.note}
+                key={id}
+                postId={id}
+                rating={post.rating}
+                // likes={post.likes}
+                // date={date}
+                username={post.username}
+              />
+            );
+          })}
+        </FlipMove>
       </div>
     </div>
   );

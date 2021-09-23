@@ -6,7 +6,6 @@ import { Button, Input } from "@mui/material";
 import { useGlobalAuthContext } from "../../AuthContext";
 import styles from "./LoginSignup.module.css";
 import logo from "./Logo.svg";
-import TextField from "@mui/material/TextField";
 
 const style = {
   position: "absolute",
@@ -33,44 +32,36 @@ function LoginSignup() {
     setPassword,
     user,
     setUser,
+    registerOpen,
+    setRegisterOpen,
   } = useGlobalAuthContext();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        //User Has logged in
+        // user is logged in...
         console.log(authUser);
         setUser(authUser);
+
+        if (authUser.displayName) {
+          // dont update username
+        } else {
+          return authUser.updateProfile({
+            displayName: username,
+          });
+        }
       } else {
-        //User has logged out
         setUser(null);
       }
     });
+
     return () => {
-      //cleanup
       unsubscribe();
     };
   }, [user, username]);
-  // console.log(user);
 
-  const signUp = (event) => {
-    event.preventDefault();
-
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((authUser) => {
-        return authUser.user.updateProfile({
-          displayName: username,
-        });
-      })
-      .catch((error) => alert(error.message));
-
-    setOpen(false);
-  };
-
-  const signIn = (event) => {
-    event.preventDefault();
-
+  const handleLogin = (e) => {
+    e.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
@@ -78,75 +69,19 @@ function LoginSignup() {
     setOpenSignIn(false);
   };
 
+  const handleRegister = (e) => {
+    e.preventDefault();
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message));
+
+    setOpen(false);
+  };
+
   // console.log("hello");
 
   return (
     <>
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <Box sx={style}>
-          <form className={styles.formContainer}>
-            <center>
-              <div className="app__header">
-                <img className={styles.formLogo} src={logo} alt="" />
-              </div>
-            </center>
-            {/* ----------- */}
-            {/* <TextField
-              style={{ marginTop: "20px" }}
-              className={styles.formInput}
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              id="standard-basic"
-              label="Username"
-              variant="standard"
-            />
-            <TextField
-              style={{ marginTop: "20px" }}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={styles.formInput}
-              id="standard-basic"
-              type="email"
-              label="Email"
-              variant="standard"
-            />
-            <TextField
-              style={{ marginTop: "20px" }}
-              className={styles.formInput}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              id="standard-basic"
-              type="password"
-              label="Password"
-              variant="standard"
-            /> */}
-            <Input
-              className={styles.formInput}
-              placeholder="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <Input
-              className={styles.formInput}
-              placeholder="email"
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              className={styles.formInput}
-              placeholder="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Button className={styles.btnn} onClick={signUp}>
-              SignUp
-            </Button>
-          </form>
-        </Box>
-      </Modal>
       <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
         <Box sx={style}>
           <form className={styles.formContainer}>
@@ -170,21 +105,59 @@ function LoginSignup() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button className={styles.btnn} onClick={signIn}>
+            <Button className={styles.btnn} onClick={handleLogin}>
               Sign In
             </Button>
           </form>
         </Box>
       </Modal>
 
-      {user ? (
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <Box sx={style}>
+          <form className={styles.formContainer}>
+            <center>
+              <div className="app__header">
+                <img className={styles.formLogo} src={logo} alt="" />
+              </div>
+            </center>
+            {/* ----------- */}
+
+            <Input
+              className={styles.formInput}
+              placeholder="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <Input
+              className={styles.formInput}
+              placeholder="email"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              className={styles.formInput}
+              placeholder="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Button className={styles.btnn} onClick={handleRegister}>
+              Register
+            </Button>
+          </form>
+        </Box>
+      </Modal>
+
+      {user?.displayName ? (
         <Button variant="contained" onClick={() => auth.signOut()}>
-          Log Out
+          LogOut
         </Button>
       ) : (
         <div className="app__loginContainer">
           <Button variant="contained" onClick={() => setOpenSignIn(true)}>
-            Sign In
+            LogIn
           </Button>
           <Button variant="contained" onClick={() => setOpen(true)}>
             SignUp
