@@ -32,8 +32,6 @@ function LoginSignup() {
     setPassword,
     user,
     setUser,
-    registerOpen,
-    setRegisterOpen,
   } = useGlobalAuthContext();
 
   useEffect(() => {

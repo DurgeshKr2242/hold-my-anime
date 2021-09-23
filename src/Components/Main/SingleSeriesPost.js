@@ -3,8 +3,6 @@ import styles from "./SingleSeriesPost.module.css";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import { BsChatSquareQuoteFill } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
-import { SiGooglecalendar } from "react-icons/si";
-import { BiTime } from "react-icons/bi";
 import { db } from "../../firebase";
 import firebase from "firebase";
 import { useGlobalAuthContext } from "../../AuthContext";

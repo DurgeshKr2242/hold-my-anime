@@ -142,7 +142,6 @@ const SeriesPost = (props) => {
                 }}
               />
             </Box>
-            {/* <form className={classes.root}> */}
             <TextField
               className={styles.text1}
               variant="outlined"
@@ -155,18 +154,6 @@ const SeriesPost = (props) => {
               }}
             />
 
-            {/* <label htmlFor="contained-button-file">
-                <Input
-                  accept="image/*"
-                  id="contained-button-file"
-                  multiple
-                  type="file"
-                  onChange={handleChange}
-                />
-                <Button variant="contained" component="span">
-                  Upload
-                </Button>
-              </label> */}
             <input type="file" onChange={handleChange} />
             {/* <TextField
                 className={styles.text2}

@@ -85,8 +85,9 @@
 }
 .commentsContainer {
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: scroll;
   margin-top: 10px;
   background-color: #f3f2ef;
   padding: 8px 15px;
+  max-height: 200px;
 }
