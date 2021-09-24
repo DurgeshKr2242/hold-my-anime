@@ -9,7 +9,7 @@ import { Button } from "@material-ui/core";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [navScrolled, setNavScrolled] = useState(true);
+  const [navScrolled, setNavScrolled] = useState(false);
 
   const [visible, setVisible] = useState(false);
 
