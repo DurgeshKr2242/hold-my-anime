@@ -1,25 +1,13 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  /* padding: 0 0 0 10px; */
-  color: rgb(145, 141, 141);
-  border-bottom: 1px solid lightgray;
-}
-.cross {
-  font-size: 30px;
-  cursor: pointer;
-  color: black;
-}
 .backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(51, 50, 50, 0.555);
   display: grid;
   place-items: center;
-  transition: var(--transition);
+  transition: ease-in 3s;
   visibility: hidden;
   z-index: -1;
 }
@@ -29,59 +17,100 @@
 }
 
 .backdropContainer {
-  /* max-height: 400px; */
-  /* background-color: white; */
   color: black;
 }
 
-.inputContainer {
-  /* padding-right: 40px; */
-  padding-top: 20px;
+.mainContainer {
+  padding: 2rem;
+  background-color: #e71d36;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  min-width: 500px;
+}
+
+.containerHeader {
   width: 100%;
-  max-width: 600px;
-  /* height: 100%; */
-
-  padding: 40px;
   display: flex;
-  flex-direction: column;
-}
-.textFields {
-  display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 20px;
+}
+.cross {
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: linear 0.3s;
+  color: rgb(46, 44, 44);
+}
+.cross:hover {
+  font-size: 1.9rem;
+
+  color: black;
 }
 
-.postContainer {
-  display: flex;
-  flex-direction: column;
-}
-.textt {
-  margin-top: 30px;
+.containerName {
   width: 100%;
+  margin-bottom: 20px;
 }
-.actionArea {
+.containerQuote {
+  margin-bottom: 20px;
+}
+.containerCharFile {
+  width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-/* .text1 {
-  width: 45%;
-  /* display: inline; */
-/* } */
-/* .text2 { */
-/* width: 40%; */
-/* } */
-/* .text3 { */
-/* display: block; */
-/* width: 100%; */
-/* min-width: 680px; */
-/* }/ */
-/* .text4 { */
-/* width: 300px; */
-/* } */
-/* .text5 { */
-/* width: 100%; */
-/* } */
-/* .button {
-  display: block;
-} */
+.fileInput {
+  display: inline-block;
+  margin-right: 3rem;
+  margin-top: 1.2rem;
+}
+.containerProgress {
+  margin: 2.2rem 0;
+}
+
+.nameTextfield {
+  color: green;
+}
+
+.userInputWrp {
+  position: relative;
+  margin-bottom: 1rem;
+  /* width: 50%; */
+}
+.userInputWrp .inputText {
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #000;
+  box-shadow: none !important;
+  padding: 7px 0;
+  background-color: #e71d36;
+  color: black;
+  font-size: 1.1rem;
+}
+.userInputWrp .inputText:focus {
+  border-width: medium medium 2px;
+  font-size: 1.1rem;
+}
+.userInputWrp .floatingLabel {
+  position: absolute;
+  pointer-events: none;
+  top: 1.8rem;
+  left: 1rem;
+  transition: 0.2s ease all;
+}
+.userInputWrp .inputText:focus ~ .floatingLabel,
+.userInputWrp .inputText:not(:focus):valid ~ .floatingLabel {
+  top: 4.1rem;
+  left: 1rem;
+  font-size: 0.9rem;
+  opacity: 1;
+  /* border: 1px solid rgb(37, 37, 37); */
+  padding: 0.3rem;
+}

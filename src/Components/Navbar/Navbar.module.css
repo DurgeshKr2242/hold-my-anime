@@ -3,29 +3,37 @@
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 10px;
-  background-color: #f3f2ef;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
-    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+  /* padding: 20px; */
+  background-color: #011627;
+
+  box-shadow: rgba(0, 5, 8, 0.4) 0px 0px 0px 2px,
+    rgba(0, 1, 2, 0.65) 0px 4px 6px -1px,
     rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-}
-.logo {
-  width: 150px;
-  cursor: pointer;
-  margin-left: 50px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: 0.6s;
+  margin: 0px 0px;
+  padding: 25px 0px;
+  z-index: 1000;
 }
 
-.user {
-  font-size: 40px;
-  margin-right: 50px;
-  padding: 10px;
-  border-radius: 35%;
+.sticky {
+  box-shadow: rgba(0, 5, 8, 0.4) 0px 0px 0px 2px,
+    rgba(0, 1, 2, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  padding: 7px;
+  background-color: #e71d36;
+}
+.logo {
+  width: 80px;
   cursor: pointer;
+  margin-left: 150px;
+  /* color: aliceblue; */
+  /* background-color: aliceblue; */
 }
-.user:hover {
-  background-color: black;
-  color: white;
-}
+
 .navv {
   flex: 1;
   text-align: right;
@@ -34,6 +42,5 @@
 .navv ul li {
   list-style: none;
   display: inline-block;
-  margin-right: 60px;
   cursor: pointer;
 }

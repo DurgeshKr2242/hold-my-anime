@@ -6,6 +6,8 @@ import { AiFillStar } from "react-icons/ai";
 import { db } from "../../firebase";
 import firebase from "firebase";
 import { useGlobalAuthContext } from "../../AuthContext";
+import { Button, Input } from "@material-ui/core";
+import { OutlinedInput } from "@mui/material";
 
 const SingleSeriesPost = forwardRef(
   (
@@ -69,7 +71,7 @@ const SingleSeriesPost = forwardRef(
           <div className={styles.row}>
             <div className={styles.col1}>
               <img src={imageUrl} alt="My Cover Pic" />
-              <p style={{ color: "rgb(117, 117, 117)" }}>
+              <p style={{ color: "#0e385a" }}>
                 Posted <br />
                 By: {username} <br />
                 {/* <SiGooglecalendar />: {date} <br />
@@ -78,60 +80,73 @@ const SingleSeriesPost = forwardRef(
               </p>
             </div>
             <div className={styles.col2}>
-              {quote && (
-                <div className={styles.quote}>
-                  <FaQuoteLeft /> {quote} <FaQuoteRight />
+              <div className={styles.topText}>
+                {quote && (
+                  <div className={styles.quote}>
+                    <FaQuoteLeft /> {quote} <FaQuoteRight />
+                  </div>
+                )}
+                {favChar && (
+                  <p>
+                    I believe in <b> {favChar}'s </b> Supremecy
+                  </p>
+                )}
+                <div className="rating">
+                  <p>
+                    It deserves <b> {rating}</b> <AiFillStar /> according to me.
+                  </p>
                 </div>
-              )}
-              {favChar && (
-                <p>
-                  I believe in <b> {favChar}'s </b> Supremecy
-                </p>
-              )}
-              <div className="rating">
-                <p>
-                  It deserves <b> {rating}</b> <AiFillStar /> according to me.
-                </p>
               </div>
-              <div className="hr">
-                <hr />
-              </div>
-              <div className="note">
-                <p>
+              {/* <div> */}
+              <hr className={styles.hr1} />
+              {/* </div> */}
+              <div>
+                <p className={styles.note}>
                   <BsChatSquareQuoteFill /> {note}
                 </p>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className={styles.commentsContainer}>
-          {comments.map((comment) => (
-            <p>
-              <b>{comment.username}</b> {comment.text}
-            </p>
-          ))}
-        </div>
+          {comments.length ? (
+            <>
+              <div className={styles.totalComments}>
+                <p>Total {comments.length} comments</p>
+              </div>
+              <div className={styles.commentsContainer}>
+                {comments.map((comment) => (
+                  <p>
+                    <b>{comment.username}</b> {comment.text}
+                  </p>
+                ))}
+              </div>
+            </>
+          ) : (
+            ""
+          )}
 
-        {user && (
-          <form className="post__commentBox">
-            <input
-              className="post__input"
-              type="text"
-              placeholder="Add a comment..."
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            />
-            <button
-              disabled={!comment}
-              className="post__button"
-              type="submit"
-              onClick={postComment}
-            >
-              Post
-            </button>
-          </form>
-        )}
+          {user && (
+            <form className="post__commentBox">
+              <OutlinedInput
+                style={{ width: "100%" }}
+                type="text"
+                placeholder="Add a comment..."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                endAdornment={
+                  <Button
+                    disabled={!comment}
+                    style={{ color: `${comment ? "#E71D36" : ""}` }}
+                    type="submit"
+                    onClick={postComment}
+                  >
+                    Post
+                  </Button>
+                }
+              />
+            </form>
+          )}
+        </div>
       </div>
     );
   }

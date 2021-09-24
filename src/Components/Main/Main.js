@@ -18,7 +18,9 @@ const Main = () => {
 
   return (
     <div className={styles.mainContainer}>
-      <NewPost />
+      <div className={styles.newPostContainer}>
+        <NewPost />
+      </div>
 
       <div className={styles.feedss}>
         <FlipMove>

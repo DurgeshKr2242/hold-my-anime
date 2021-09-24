@@ -1,24 +1,14 @@
 .feedContainer {
   padding: 20px;
   /* margin: 20px 0; */
-  background-color: #f3f2ef;
+  /* background-color: #f3f2ef; */
   max-width: 750px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  /* background-color: #98ddc0; */
+  /* background-color: #98ddc0; */
+  background: #2ec4b6;
 }
-
-/* .postContainer {
-    display: flex;
-    flex-direction: row;
-  } */
-
-/* .postViewContainer {
-    flex-basis: 60%;
-  }
-  */
-/* .postCommentContainer {
-    margin-left: 20px;
-  } */
 
 .actionArea {
   background-color: #f3f2ef;
@@ -31,15 +21,21 @@
 .actionArea:hover {
   background-color: #eceae3;
 }
-.actionArea .love {
-  background-color: red;
-  cursor: pointer;
-}
 
 .row {
   display: flex;
   /* align-items: center; */
   justify-content: space-between;
+  border-bottom: 2px solid #01162746;
+  padding-bottom: 15px;
+}
+.totalComments {
+  color: #0e385a;
+  /* padding: 5px; */
+}
+.totalComments:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 .col1 {
   flex-basis: 40%;
@@ -50,7 +46,10 @@
   position: relative;
   margin-left: 20px;
 }
-
+.topText {
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
 .col1 img {
   width: 100%;
   /* max-width: 200px; */
@@ -67,27 +66,52 @@
 }
 
 .separator .line {
-  height: 3px;
+  height: 4px;
   flex: 1;
-  background-color: #000;
+  background-color: #011627;
 }
 
 .separator h1 {
   padding: 0 2rem;
+  color: #011627;
 }
 .name {
   margin: 1rem auto;
 }
 
+.hr1 {
+  margin-top: 30px;
+  border: 1px solid #0116276c;
+}
+.note {
+  margin-top: 30px;
+}
 .mainFeedContainer {
   border: 1px solid #f3f2ef;
   margin: 30px 0;
 }
 .commentsContainer {
   box-sizing: border-box;
-  overflow: scroll;
-  margin-top: 10px;
-  background-color: #f3f2ef;
-  padding: 8px 15px;
+  overflow-y: scroll;
+  margin-bottom: 1px;
+  background-color: #2ec4b6;
+  line-height: 13px;
+  /* padding: 0 10px; */
   max-height: 200px;
+  font-size: medium;
+}
+
+.commentsContainer ::-webkit-scrollbar {
+  width: 0.5em;
+}
+.commentsContainer::-webkit-scrollbar-track {
+  background: #2ec4b6;
+}
+.commentsContainer::-webkit-scrollbar-thumb {
+  background: #15a092;
+  border-radius: 25px;
+}
+
+.commentsContainer::-webkit-scrollbar-thumb:hover {
+  background: #011627;
 }

@@ -149,15 +149,46 @@ function LoginSignup() {
       </Modal>
 
       {user?.displayName ? (
-        <Button variant="contained" onClick={() => auth.signOut()}>
+        <Button
+          variant="contained"
+          style={{
+            backgroundColor: "#FF9F1C",
+            fontSize: "0.9rem",
+            color: "black",
+            fontWeight: "bold",
+            letterSpacing: "0.9px",
+          }}
+          onClick={() => auth.signOut()}
+        >
           LogOut
         </Button>
       ) : (
         <div className="app__loginContainer">
-          <Button variant="contained" onClick={() => setOpenSignIn(true)}>
+          <Button
+            variant="contained"
+            onClick={() => setOpenSignIn(true)}
+            style={{
+              backgroundColor: "#FF9F1C",
+              fontSize: "0.9rem",
+              color: "black",
+              fontWeight: "bold",
+              letterSpacing: "0.9px",
+              marginRight: "20px",
+            }}
+          >
             LogIn
           </Button>
-          <Button variant="contained" onClick={() => setOpen(true)}>
+          <Button
+            variant="contained"
+            onClick={() => setOpen(true)}
+            style={{
+              backgroundColor: "#FF9F1C",
+              fontSize: "0.9rem",
+              color: "black",
+              fontWeight: "bold",
+              letterSpacing: "0.9px",
+            }}
+          >
             SignUp
           </Button>
         </div>

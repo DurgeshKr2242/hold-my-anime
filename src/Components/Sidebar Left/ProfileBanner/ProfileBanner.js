@@ -11,7 +11,12 @@ const ProfileBanner = () => {
   return (
     <>
       {/* {console.log("hii")} */}
-      <Paper className={styles.profileContainer} elevation={5}>
+
+      <Paper
+        className={styles.profileContainer}
+        elevation={5}
+        style={{ background: "#2ec4b6" }}
+      >
         <div className={styles.pfp}>
           <img src={pfpUrl} alt="" />
         </div>
@@ -19,7 +24,8 @@ const ProfileBanner = () => {
           <h3 className={styles.name}>{user ? user.displayName : ""}</h3>
           <p className={styles.status}>{status}</p>
         </div>
-        <hr />
+        <hr className={styles.hr1} />
+
         <div className={styles.desc}>
           <p className="watching">
             <b>Watching</b> : {watching}
@@ -34,16 +40,28 @@ const ProfileBanner = () => {
 
         <div className={styles.friendContainer}>
           <Button
-            className={styles.button}
             variant="contained"
-            color="secondary"
+            style={{
+              backgroundColor: "#E71D36",
+              fontSize: "0.9rem",
+              color: "white",
+              fontWeight: "bold",
+              letterSpacing: "0.9px",
+              marginRight: "20px",
+            }}
           >
             Friends : {totalFriends}
           </Button>
           <Button
-            className={styles.button}
             variant="contained"
-            color="secondary"
+            style={{
+              backgroundColor: "#E71D36",
+              fontSize: "0.9rem",
+              color: "white",
+              fontWeight: "bold",
+              letterSpacing: "0.9px",
+              marginRight: "20px",
+            }}
           >
             Add Friend{" "}
           </Button>

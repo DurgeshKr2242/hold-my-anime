@@ -4,13 +4,16 @@
 .navbar {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 .row {
   display: flex;
   /* align-items: center; */
   justify-content: center;
+  margin-top: 50px;
   margin-bottom: 10px;
+  background-color: #011627;
+  padding-top: 150px;
 }
 
 .col1 {
@@ -29,4 +32,19 @@
   position: relative;
   flex-basis: 70%;
   /* background-color: teal; */
+}
+
+::-webkit-scrollbar {
+  width: 1em;
+}
+::-webkit-scrollbar-track {
+  background: rgb(26, 26, 26);
+}
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 25px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(15, 15, 15);
 }
