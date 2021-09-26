@@ -4,6 +4,7 @@ import Main from "./Components/Main/Main";
 import Navbar from "./Components/Navbar/Navbar";
 import SideBar from "./Components/Sidebar Left/SideBar";
 import { AuthProvider } from "./AuthContext";
+import RandomQuote from "./Components/RandomQuote/RandomQuote";
 function App() {
   return (
     <AuthProvider>
@@ -11,6 +12,8 @@ function App() {
         <div className="navbar">
           <Navbar />
         </div>
+
+        <RandomQuote />
         <div className="row">
           <div className="col1">
             <SideBar />

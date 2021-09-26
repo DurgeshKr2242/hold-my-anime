@@ -24,14 +24,12 @@
     rgba(0, 1, 2, 0.65) 0px 4px 6px -1px,
     rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
   padding: 7px;
-  background-color: #e71d36;
+  background-color: #e71d35;
 }
 .logo {
   width: 80px;
   cursor: pointer;
   margin-left: 150px;
-  /* color: aliceblue; */
-  /* background-color: aliceblue; */
 }
 
 .navv {

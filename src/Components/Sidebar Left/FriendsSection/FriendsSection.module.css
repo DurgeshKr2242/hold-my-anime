@@ -1,16 +1,76 @@
 .mainContainer {
-  padding: 20px;
-  margin-top: 50px;
+  padding: 20px 15px;
+  margin-top: 60px;
   overflow: hidden;
+  min-width: 380px;
+  display: flex;
+  justify-content: center;
 }
+
 .friendContainer {
   display: flex;
   flex-direction: column;
-  min-width: 310px;
-
+  background-color: #011627;
   align-items: flex-start;
-  background: #f3f2ef;
+  justify-content: center;
   margin-top: 10px;
-  padding: 15px;
+  margin-bottom: 40px;
+  padding: 0 15px;
   border-radius: 2%;
+  color: rgb(255, 255, 255);
+}
+
+.userInputWrp {
+  position: relative;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  /* width: 50%; */
+}
+.userInputWrp .inputText {
+  width: 30%;
+  text-align: center;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #000;
+  box-shadow: none !important;
+  padding: 7px 0;
+  background-color: #2ec4b6;
+  color: black;
+  font-size: 1.1rem;
+}
+.userInputWrp .inputText:focus {
+  border-width: medium medium 2px;
+  font-size: 1.1rem;
+}
+.userInputWrp .floatingLabel1 {
+  position: absolute;
+  pointer-events: none;
+  top: 0.7rem;
+  left: 7.5rem;
+  transition: 0.2s ease all;
+}
+
+.userInputWrp .floatingLabel2 {
+  position: absolute;
+  pointer-events: none;
+  top: 0.7rem;
+  left: 11rem;
+  transition: 0.2s ease all;
+}
+.userInputWrp .inputText:focus ~ .floatingLabel1,
+.userInputWrp .inputText:not(:focus):valid ~ .floatingLabel1 {
+  top: 0.7rem;
+  left: 5rem;
+  opacity: 1;
+  /* padding: 0.3rem; */
+}
+.userInputWrp .inputText:focus ~ .floatingLabel2,
+.userInputWrp .inputText:not(:focus):valid ~ .floatingLabel2 {
+  top: 0.7rem;
+  /* top: 1rem; */
+  left: 15rem;
+
+  opacity: 1;
+  /* padding: 0.3rem; */
 }

@@ -1,0 +1,132 @@
+.mainContainer {
+  background-color: #011627;
+  padding-top: 170px;
+  margin: 0;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  /* flex-direction: column;     */
+  color: #ff9f1c;
+}
+.secContainer {
+  text-align: justify;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px solid #ff9f1c;
+  max-width: 50rem;
+  padding: 0 30px;
+  /* background-color: #ff9f1c; */
+}
+.quote {
+  margin-bottom: 0;
+}
+.animeName {
+  transform: translateY(50%);
+  margin: 0;
+  padding: 0 15px;
+  /* text-decoration: underline; */
+
+  text-decoration: none;
+  color: #011627;
+  background-image: linear-gradient(90deg, #ff9f1c, #ff9f1c);
+  background-repeat: no-repeat;
+  background-size: auto 0.1rem;
+  background-position: bottom;
+  background-size: auto 100%;
+
+  transition: ease-in-out 0.3s;
+}
+
+/*  ```````````````````````````````````````````````````   */
+
+.loader {
+  position: relative;
+  width: 80px;
+  margin: 100px auto;
+}
+
+.duo {
+  height: 20px;
+  width: 50px;
+  background: hsla(0, 0%, 0%, 0);
+  position: absolute;
+}
+
+.duo,
+.dot {
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.duo1 {
+  left: 0;
+}
+
+.duo2 {
+  left: 30px;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #ff9f1c;
+  position: absolute;
+}
+
+.dota {
+  left: 0px;
+}
+
+.dotb {
+  right: 0px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes onOff {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.duo1 {
+  animation-name: spin;
+}
+
+.duo2 {
+  animation-name: spin;
+  animation-direction: reverse;
+}
+
+.duo2 .dotb {
+  animation-name: onOff;
+}
+
+.duo1 .dota {
+  opacity: 0;
+  animation-name: onOff;
+  animation-direction: reverse;
+}

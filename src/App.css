@@ -8,12 +8,10 @@
 }
 .row {
   display: flex;
-  /* align-items: center; */
   justify-content: center;
-  margin-top: 50px;
   margin-bottom: 10px;
   background-color: #011627;
-  padding-top: 150px;
+  padding-top: 120px;
 }
 
 .col1 {
