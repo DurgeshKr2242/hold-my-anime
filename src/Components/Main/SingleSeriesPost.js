@@ -3,31 +3,21 @@ import styles from "./SingleSeriesPost.module.css";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import { BsChatSquareQuoteFill } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
-import { db } from "../../firebase";
 import firebase from "firebase";
 import { useGlobalAuthContext } from "../../AuthContext";
 import { Button, Input } from "@material-ui/core";
 import { OutlinedInput } from "@mui/material";
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import { db, storage } from "../../firebase";
+import { RiEditBoxFill } from "react-icons/ri";
+import EditSeriesPost from "./NewPost/EditSeriesPost";
 
 const SingleSeriesPost = forwardRef(
-  (
-    {
-      name,
-      imageUrl,
-      quote,
-      favChar,
-      note,
-      rating,
-      // likes,
-      // date,
-      username,
-      postId,
-    },
-    ref
-  ) => {
+  ({ name, imageUrl, quote, favChar, note, rating, username, postId }, ref) => {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState("");
     const { user } = useGlobalAuthContext();
+    const [backdropOpen, setBackdropOpen] = useState(false);
 
     useEffect(() => {
       let unsubscribe;
@@ -58,6 +48,19 @@ const SingleSeriesPost = forwardRef(
       setComment("");
     };
 
+    const handleDelete = () => {
+      db.collection("posts")
+        .doc(postId)
+        .delete()
+        .catch((err) => {
+          console.error(err);
+        });
+    };
+
+    const handleToggle = () => {
+      setBackdropOpen(!backdropOpen);
+    };
+
     return (
       <div className={styles.mainFeedContainer} ref={ref}>
         <div className={styles.feedContainer}>
@@ -71,13 +74,6 @@ const SingleSeriesPost = forwardRef(
           <div className={styles.row}>
             <div className={styles.col1}>
               <img src={imageUrl} alt="My Cover Pic" />
-              <p style={{ color: "#0e385a" }}>
-                Posted <br />
-                By: {username} <br />
-                {/* <SiGooglecalendar />: {date} <br />
-                  <BiTime />:{" "}
-                  {new Date().getHours() + ":" + new Date().getMinutes()} */}
-              </p>
             </div>
             <div className={styles.col2}>
               <div className={styles.topText}>
@@ -97,16 +93,43 @@ const SingleSeriesPost = forwardRef(
                   </p>
                 </div>
               </div>
-              {/* <div> */}
-              <hr className={styles.hr1} />
-              {/* </div> */}
-              <div>
-                <p className={styles.note}>
-                  <BsChatSquareQuoteFill /> {note}
-                </p>
-              </div>
             </div>
           </div>
+          <div>
+            <p className={styles.note}>
+              <BsChatSquareQuoteFill /> {note}
+            </p>
+          </div>
+          <p style={{ color: "#0e385a", textAlign: "right" }}>
+            &#8212; Posted By: {username} <br />
+          </p>
+
+          {username === user?.displayName && (
+            <div className={styles.modifyArea}>
+              <Button
+                style={{ padding: "8px 20px", margin: "0", margin: "auto" }}
+                onClick={handleDelete}
+              >
+                <RiDeleteBin6Fill
+                  style={{
+                    fontSize: "20px",
+                  }}
+                />
+                Delete
+              </Button>
+              <Button
+                style={{ padding: "8px 20px", margin: "0", margin: "auto" }}
+                onClick={handleToggle}
+              >
+                <RiEditBoxFill
+                  style={{
+                    fontSize: "20px",
+                  }}
+                />
+                Edit
+              </Button>
+            </div>
+          )}
 
           {comments.length ? (
             <>
@@ -145,6 +168,22 @@ const SingleSeriesPost = forwardRef(
                 }
               />
             </form>
+          )}
+        </div>
+
+        <div className="backdrop">
+          {backdropOpen && (
+            <EditSeriesPost
+              handleToggle={handleToggle}
+              name={name}
+              imageUrl={imageUrl}
+              quote={quote}
+              favChar={favChar}
+              note={note}
+              rating={rating}
+              username={username}
+              postId={postId}
+            />
           )}
         </div>
       </div>

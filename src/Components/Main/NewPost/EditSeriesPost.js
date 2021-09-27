@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styles from "./SeriesPost.module.css";
 import TextField from "@material-ui/core/TextField";
 import { styled } from "@mui/material/styles";
+
 import Button from "@mui/material/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { FaSkullCrossbones } from "react-icons/fa";
@@ -100,17 +101,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SeriesPost = (props) => {
+const EditSeriesPost = (props) => {
   const classes = useStyles();
-  const [rating, setRating] = useState(2.5);
-  const [name, setName] = useState("");
+  const [rating, setRating] = useState(props.rating);
+  const [name, setName] = useState(props.name);
   const [image, setImage] = useState(null);
-  const [quote, setQuote] = useState("");
-  const [favChar, setFavChar] = useState("");
-  const [note, setNote] = useState("");
+  const [quote, setQuote] = useState(props.quote);
+  const [favChar, setFavChar] = useState(props.favChar);
+  const [note, setNote] = useState(props.note);
   const [showBackdrop, setShowBackdrop] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState(props.imageUrl);
+
   const { user } = useGlobalAuthContext();
 
   const handleChange = (e) => {
@@ -119,54 +121,78 @@ const SeriesPost = (props) => {
     }
   };
 
-  const handleUpload = () => {
+  const handleUpdate = () => {
     // e.preventDefault();
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        // progress function ...
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgress(progress);
-      },
-      (error) => {
-        // Error function ...
-        console.log(error);
-      },
-      () => {
-        // complete function ...
-        storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then((url) => {
-            setUrl(url);
-            //post image inside db
-            db.collection("posts").add({
-              imageUrl: url,
-              favChar: favChar,
-              name: name,
-              rating: rating,
-              quote: quote,
-              note: note,
-              username: user.displayName,
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            });
+    if (image) {
+      const updateTask = storage.ref(`images/${image.name}`).put(image);
+      updateTask.on(
+        "state_changed",
+        (snapshot) => {
+          // progress function ...
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(progress);
+        },
+        (error) => {
+          // Error function ...
+          console.log(error);
+        },
+        () => {
+          // complete function ...
 
-            setProgress(0);
-            setFavChar("");
-            setImage(null);
-            setName("");
-            setRating(2.5);
-            setQuote("");
-            setNote("");
-            props.handleToggle();
-            setShowBackdrop(false);
-          });
-      }
-    );
+          storage
+            .ref("images")
+            .child(image.name)
+            .getDownloadURL()
+            .then((url) => {
+              setUrl(url);
+              //post image inside db
+              db.collection("posts").doc(props.postId).update({
+                imageUrl: url,
+                favChar: favChar,
+                name: name,
+                rating: rating,
+                quote: quote,
+                note: note,
+                username: user.displayName,
+                // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              });
+
+              setProgress(0);
+              setFavChar("");
+              setImage(null);
+              setName("");
+              setRating(2.5);
+              setQuote("");
+              setNote("");
+              props.handleToggle();
+              setShowBackdrop(false);
+            });
+        }
+      );
+    } else {
+      db.collection("posts").doc(props.postId).update({
+        imageUrl: url,
+        favChar: favChar,
+        name: name,
+        rating: rating,
+        quote: quote,
+        note: note,
+        username: user.displayName,
+        // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+
+      setProgress(0);
+      setFavChar("");
+      setImage(null);
+      setName("");
+      setRating(2.5);
+      setQuote("");
+      setNote("");
+      props.handleToggle();
+      setShowBackdrop(false);
+    }
   };
 
   return (
@@ -305,6 +331,11 @@ const SeriesPost = (props) => {
               {/* ```````````````````````````` */}
 
               <div className={styles.containerProgress}>
+                {/* <progress
+                  className="imageupload__progress"
+                  value={progress}
+                  max="100"
+                /> */}
                 <LinearProgress variant="determinate" value={progress} />
               </div>
 
@@ -319,9 +350,9 @@ const SeriesPost = (props) => {
                 }}
                 variant="contained"
                 type="submit"
-                onClick={handleUpload}
+                onClick={handleUpdate}
               >
-                Upload
+                Update Post
               </Button>
             </div>
           </Paper>
@@ -331,4 +362,4 @@ const SeriesPost = (props) => {
   );
 };
 
-export default SeriesPost;
+export default EditSeriesPost;

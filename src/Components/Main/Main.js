@@ -7,6 +7,7 @@ import { db } from "../../firebase";
 
 const Main = () => {
   const [posts, setPosts] = useState([]);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     db.collection("posts")

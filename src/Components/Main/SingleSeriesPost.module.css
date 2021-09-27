@@ -58,6 +58,9 @@
   font-size: 18px;
   letter-spacing: 1px;
   font-weight: 600;
+  text-align: justify;
+  /* padding-left: 10px; */
+  padding-right: 10px;
 }
 
 .separator {
@@ -85,11 +88,26 @@
 }
 .note {
   margin-top: 30px;
+  text-align: justify;
+  /* margin: auto 5px; */
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .mainFeedContainer {
   border: 1px solid #f3f2ef;
   margin: 30px 0;
 }
+
+.modifyArea {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  background: #2ec4b6;
+  border-bottom: 2px solid #01162746;
+  border-top: 2px solid #01162746;
+  /* padding: 7px 0; */
+}
+
 .commentsContainer {
   box-sizing: border-box;
   overflow-y: scroll;
@@ -115,3 +133,4 @@
 .commentsContainer::-webkit-scrollbar-thumb:hover {
   background: #011627;
 }
+/* ````````````````````````````````````````````` */

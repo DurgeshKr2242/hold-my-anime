@@ -114,3 +114,10 @@
   /* border: 1px solid rgb(37, 37, 37); */
   padding: 0.3rem;
 }
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ```````````````````````````````````````````````````````````` */
