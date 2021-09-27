@@ -14,6 +14,8 @@ const Main = () => {
       .onSnapshot((snapshot) =>
         setPosts(snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })))
       );
+
+    // setLoading(false);
   }, []);
 
   return (

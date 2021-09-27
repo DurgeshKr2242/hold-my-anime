@@ -9,15 +9,19 @@ import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import { Button } from "@material-ui/core";
 
+const baseUrl =
+  "https://private-anon-b41d72021c-jikan.apiary-proxy.com/v3/top/anime/1/";
+
 const FriendsSection = () => {
   // const friends = [...friendsData];
   const [top, setTop] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [toShow, setToShow] = useState(10);
+  const [topFilter, setTopFilter] = useState("tv");
 
   useEffect(() => {
-    axios("https://api.jikan.moe/v3/top/anime/1/bypopularity")
+    axios(`https://api.jikan.moe/v3/top/anime/1/${topFilter}`)
       .then((res) => {
         setTop(res.data.top);
         // console.log(res.data.top);
@@ -29,8 +33,13 @@ const FriendsSection = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [topFilter]);
   const top10 = top.slice(0, toShow);
+
+  const changeHandler = (e) => {
+    console.log(e.target.value);
+    setTopFilter(e.target.value);
+  };
 
   return (
     <>
@@ -39,12 +48,33 @@ const FriendsSection = () => {
         className={styles.mainContainer}
         style={{ background: "#2ec4b6" }}
       >
+        {/* <h1>Most Popular Anime</h1> */}
+        <h1>Choose your TOP </h1>
+        <div className={styles.select}>
+          <select
+            className={styles.selectttt}
+            name="format"
+            id="format"
+            onChange={changeHandler}
+          >
+            <option selected disabled>
+              Choose a option
+            </option>
+            <option value="bypopularity">Popular</option>
+            <option value="favorite">Favourite</option>
+            <option value="airing">Airing</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="tv">TV</option>
+            <option value="movie">Movie</option>
+            <option value="ova">OVA</option>
+            <option value="special">Special</option>
+          </select>
+        </div>
+
         {loading ? (
           <h3>Loading...</h3>
         ) : (
           <div>
-            <h1>Most Popular Anime</h1>
-
             <div className={styles.containerName}>
               <div className={styles.userInputWrp}>
                 <br />
@@ -86,7 +116,7 @@ const FriendsSection = () => {
                     component="img"
                     alt={title}
                     image={image_url}
-                    height="140"
+                    height="250"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
