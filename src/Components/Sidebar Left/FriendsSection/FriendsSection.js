@@ -37,7 +37,7 @@ const FriendsSection = () => {
   const top10 = top.slice(0, toShow);
 
   const changeHandler = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setTopFilter(e.target.value);
   };
 

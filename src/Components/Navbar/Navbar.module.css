@@ -42,3 +42,75 @@
   display: inline-block;
   cursor: pointer;
 }
+
+/* `````````````````````````````` */
+/* .hamburger:hover {
+  opacity: 1;
+}
+
+.hamburger .divv,
+.hamburger .divv:after,
+.hamburger .divv:before {
+  background-color: #fafafa;
+  border-radius: 10px;
+  width: clamp(1.5rem, 2vw + 1.1rem, 6rem);
+  height: clamp(0.2rem, 0.3vw + 0.1rem, 0.8rem);
+  transition: all 0.15s linear;
+}
+
+.hamburger .divv:before,
+.hamburger .divv:after {
+  content: "";
+  position: absolute;
+}
+
+.hamburger .divv:before {
+  transform: translateY(-200%);
+}
+
+.hamburger .divv:after {
+  transform: translateY(200%);
+}
+
+.hamburger.open .divv {
+  background: transparent;
+}
+
+.hamburger.open .divv:before {
+  transform: rotate(45deg);
+}
+
+.hamburger.open .divv:after {
+  transform: rotate(-45deg);
+}
+
+.overlayyyy {
+  position: fixed;
+  width: 100%;
+  min-height: 100%;
+  background-color: #1a1a1a;
+  z-index: 2;
+  transform: translateY(-100%);
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlayyyy.menu {
+  transform: translateY(0%);
+}
+
+.overlayyyy a {
+  text-decoration: none;
+  color: #fafafa;
+  font-size: clamp(1rem, 4.1vw + 0.2rem, 10rem);
+  margin: 2%;
+  opacity: 0.5;
+  transition: opacity 0.2s linear;
+}
+
+.overlayyyy a:hover {
+  opacity: 1;
+} */

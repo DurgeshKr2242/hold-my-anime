@@ -32,6 +32,7 @@
   /* background-color: teal; */
 }
 
+/* `````````SCROLLBAR`````````````` */
 ::-webkit-scrollbar {
   width: 1em;
 }
@@ -46,3 +47,5 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(15, 15, 15);
 }
+
+/* ```````````````````SCROLLBAR ENDS```````````` */

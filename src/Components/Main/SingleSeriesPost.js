@@ -19,6 +19,8 @@ const SingleSeriesPost = forwardRef(
     const { user } = useGlobalAuthContext();
     const [backdropOpen, setBackdropOpen] = useState(false);
 
+    console.log(user);
+
     useEffect(() => {
       let unsubscribe;
       if (postId) {

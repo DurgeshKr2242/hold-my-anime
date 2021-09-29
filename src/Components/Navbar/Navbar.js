@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styles from "./Navbar.module.css";
-import logo from "./loogoo11.png";
 import Modal from "@mui/material/Modal";
 import LoginSignup from "./LoginSignup";
 import { Box } from "@mui/system";
 import { FaArrowCircleUp } from "react-icons/fa";
 import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import "./nav.css";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -50,8 +51,7 @@ const Navbar = () => {
           <LoginSignup />
         </Box>
       </Modal>
-      {/* <header className={styles.header}> */}
-      <div className={`${styles.navbar} ${navScrolled ? styles.sticky : ""}`}>
+      {/* <div className={`${styles.navbar} ${navScrolled ? styles.sticky : ""}`}>
         <img className={styles.logo} src={logo} alt="LOGO" />
         <nav className={styles.navv}>
           <ul>
@@ -59,7 +59,48 @@ const Navbar = () => {
               <LoginSignup />
             </li>
           </ul>
-        </nav>
+
+        </nav> */}
+
+      <nav class={`navbar ${navScrolled ? "sticky" : ""}`}>
+        <div class="navbar-container container">
+          <input type="checkbox" name="" id="" />
+          <div class="hamburger-lines">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
+          </div>
+          <ul class="menu-items">
+            <li>
+              <Link to="/">
+                <a>Home</a>
+              </Link>
+            </li>
+            {/* <li>
+              <a href="#about">About</a>
+            </li>
+
+            <li>
+              <a href="#food-menu">Menu</a>
+            </li>
+            <li>
+              <a href="#testimonials">Testimonial</a>
+            </li>
+            <li>
+              <a href="#contact">Contact</a>
+            </li> */}
+            <li>
+              <Link to="/search">
+                <a href="#food">Search</a>
+              </Link>
+            </li>
+            <li>
+              <LoginSignup />
+            </li>
+          </ul>
+          <h1 class="logo">HoldMyAnime</h1>
+        </div>
+
         <Button
           style={{
             position: "fixed",
@@ -78,7 +119,8 @@ const Navbar = () => {
             style={{ display: visible ? "inline" : "none" }}
           />
         </Button>
-      </div>
+      </nav>
+      {/* </div> */}
       {/* </header> */}
     </>
   );
