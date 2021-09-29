@@ -15,9 +15,6 @@ function App() {
           <div className="navbar">
             <Navbar />
           </div>
-          {/* <div className="search">
-            <SearchButton />
-          </div> */}
 
           <Switch>
             <Route exact path="/">
