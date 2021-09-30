@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Hold My Anime
+Why hold my beer when you can Hold My Anime
+## Functionalities Used:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. CSS Flex-box & Grid
+2. React Hooks
+3. React Router
+4. MUI (https://mui.com/)
+5. React Icons (https://react-icons.github.io/react-icons/)
+6. Jikan Api
+7. Axios
+8. Firebase Firestore
+9. Firebase Storage
+10. Firebase Authentication
+11. Deployed on Netlify
 
-## Available Scripts
+# Go create a post right now!
+HoldMyAnime (https://holdmyanime.netlify.app/)
 
-In the project directory, you can run:
+Create an account and get started!
 
-### `npm start`
+## Functionalities
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Proper Authentication (Will be adding Google SignIn option soon)
+2. Can create a post.
+3. Can delete and edit the post created by you.
+4. Can comment on the post (only when you are logged in)
+5. Left side Sidebar shows all the top anime. 
+   
+    You can select from the different categories (Popularity, Upcoming, Airing, OVA, Movie and Many More).
+    
+    You can also select the total number of results to show for each category (ranges from 0 - 50 for each category //Will be adding more soon)
+6. You can nevigate to search page from the navigation bar or simply adding /search in the base url.
+    Enter your search term in the search box.
+    
+    Choose the number of results to show using the slider (ranges from 1 - 50 per page)
+    
+    Choose the page number (if the selected page number doesnt exist then the result wont change)
+    
