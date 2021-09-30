@@ -1,13 +1,38 @@
 .mainContainer {
-  padding: 20px 15px;
-  margin-top: 60px;
+  /* padding: 20px 0; */
+  /* margin-top: 60px; */
   overflow: hidden;
-  min-width: 380px;
+  min-width: 330px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
+}
+@media only screen and (max-width: 1270px) {
+  .mainContainer {
+    min-width: 280px;
+  }
+}
+.insideMainContainer {
+  padding: 12px 12px;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  align-items: center;
+}
+.insideMainContainer h1 {
+  margin: 0;
+  text-align: left;
+  font-size: 22px;
+  margin-bottom: 15px;
+  border-bottom: 3px solid #e71d36;
 }
 
+.containerName {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
 .friendContainer {
   display: flex;
   flex-direction: column;
@@ -102,7 +127,8 @@
   padding: 0 0.5em;
   color: #fff;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0.8em;
+  width: 13em;
   font-family: "Open Sans", sans-serif;
 }
 .selectttt::-ms-expand {
@@ -111,12 +137,12 @@
 .select {
   position: relative;
   display: flex;
-  width: 20em;
-  height: 3em;
+  width: 13em;
+  height: 2.5em;
   line-height: 3;
   background: #5c6664;
   overflow: hidden;
-  border-radius: 0.25em;
+  /* border-radius: 0.25em; */
 }
 .select::after {
   content: "\25BC";
@@ -127,7 +153,7 @@
   background: #2b2e2e;
   cursor: pointer;
   pointer-events: none;
-  transition: 0.25s all ease;
+  transition: 0.5s all ease;
 }
 .select:hover::after {
   color: #23b499;

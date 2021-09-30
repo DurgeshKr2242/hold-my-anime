@@ -6,7 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  max-width: 620px;
 }
 /* .newPostContainer {
   background-color: #2ec4b6;
@@ -14,4 +15,25 @@
 
 .feedss {
   margin: 10px 10px 10px 10px;
+}
+
+@media only screen and (max-width: 1270px) {
+  .mainContainer {
+    max-width: 452px;
+  }
+}
+@media only screen and (max-width: 765px) {
+  .mainContainer {
+    min-width: 572px;
+  }
+}
+@media only screen and (max-width: 560px) {
+  .mainContainer {
+    min-width: 442px;
+  }
+}
+@media only screen and (max-width: 435px) {
+  .mainContainer {
+    min-width: 400px;
+  }
 }

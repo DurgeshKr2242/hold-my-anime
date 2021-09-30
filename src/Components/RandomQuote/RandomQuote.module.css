@@ -7,6 +7,8 @@
   justify-content: center;
   /* flex-direction: column;     */
   color: #ff9f1c;
+  /* outline: none; */
+  /* border: none; */
 }
 .secContainer {
   text-align: justify;
@@ -18,6 +20,12 @@
   max-width: 50rem;
   padding: 0 30px;
   /* background-color: #ff9f1c; */
+  margin: 0 20px;
+}
+@media only screen and (max-width: 800px) {
+  .secContainer {
+    padding: 0 15px;
+  }
 }
 .quote {
   margin-bottom: 0;

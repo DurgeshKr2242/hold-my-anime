@@ -104,8 +104,8 @@ const Navbar = () => {
         <Button
           style={{
             position: "fixed",
-            width: "100%",
-            left: "40%",
+            // width: "100%",
+            marginLeft: "90%",
             bottom: "40px",
             height: "20px",
             fontSize: "2rem",

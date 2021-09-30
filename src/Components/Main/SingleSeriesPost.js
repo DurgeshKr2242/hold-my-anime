@@ -66,6 +66,15 @@ const SingleSeriesPost = forwardRef(
     return (
       <div className={styles.mainFeedContainer} ref={ref}>
         <div className={styles.feedContainer}>
+          <div className={styles.recomended}>
+            <p>
+              {rating > 3
+                ? "Recomended"
+                : rating === "3"
+                ? "Meh!!"
+                : "Not Recomended"}
+            </p>
+          </div>
           <div className={styles.name}>
             <div className={styles.separator}>
               <div className={styles.line}></div>
@@ -81,7 +90,7 @@ const SingleSeriesPost = forwardRef(
               <div className={styles.topText}>
                 {quote && (
                   <div className={styles.quote}>
-                    <FaQuoteLeft /> {quote} <FaQuoteRight />
+                    <FaQuoteLeft /> {quote}
                   </div>
                 )}
                 {favChar && (
@@ -102,7 +111,9 @@ const SingleSeriesPost = forwardRef(
               <BsChatSquareQuoteFill /> {note}
             </p>
           </div>
-          <p style={{ color: "#0e385a", textAlign: "right" }}>
+          <p
+            style={{ color: "#0e385a", textAlign: "right", fontWeight: "bold" }}
+          >
             &#8212; Posted By: {username} <br />
           </p>
 
@@ -153,7 +164,7 @@ const SingleSeriesPost = forwardRef(
           {user && (
             <form className="post__commentBox">
               <OutlinedInput
-                style={{ width: "100%" }}
+                style={{ width: "100%", fontSize: "14px" }}
                 type="text"
                 placeholder="Add a comment..."
                 value={comment}
@@ -161,7 +172,9 @@ const SingleSeriesPost = forwardRef(
                 endAdornment={
                   <Button
                     disabled={!comment}
-                    style={{ color: `${comment ? "#E71D36" : ""}` }}
+                    style={{
+                      color: `${comment ? "#E71D36" : ""}`,
+                    }}
                     type="submit"
                     onClick={postComment}
                   >

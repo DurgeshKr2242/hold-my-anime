@@ -16,8 +16,11 @@ import Rating from "@mui/material/Rating";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import SentimentSatisfiedIcon from "@mui/icons-material/SentimentSatisfied";
-import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined";
+import FlipMove from "react-flip-move";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined";
+// RATING IMPORTS END
+import { BsImageFill } from "react-icons/bs";
 
 const customIcons = {
   1: {
@@ -113,7 +116,11 @@ const SeriesPost = (props) => {
   const [url, setUrl] = useState("");
   const { user } = useGlobalAuthContext();
 
+  const [showImg, setShowImg] = useState("");
   const handleChange = (e) => {
+    if (e.target.files[0]) {
+      setShowImg(URL.createObjectURL(e.target.files[0]));
+    }
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
@@ -170,164 +177,176 @@ const SeriesPost = (props) => {
   };
 
   return (
-    <div>
-      <div className={styles.backdropContainer}>
+    <>
+      <FlipMove>
+        {/* <div className={styles.backdropContainer}>
         <div
           className={
             showBackdrop
               ? `${styles.backdrop} ${styles.showBackdrop}`
               : `${styles.backdrop}`
           }
-        >
-          <Paper className={styles.inputContainer}>
-            <div className={styles.mainContainer}>
-              <div className={styles.containerHeader}>
-                <h3>Create your Post</h3>
-                <FaSkullCrossbones
-                  className={styles.cross}
-                  onClick={() => {
-                    props.handleToggle();
-                    setShowBackdrop(false);
+        > */}
+        <div className={styles.mainContainer}>
+          <div
+            style={{ backgroundColor: "#e71d36" }}
+            className={styles.inputContainer}
+          >
+            <div className={styles.containerHeader}>
+              <h3>Create your Post</h3>
+              <FaSkullCrossbones
+                className={styles.cross}
+                onClick={() => {
+                  props.handleToggle();
+                  setShowBackdrop(false);
+                }}
+              />
+            </div>
+
+            <div className={styles.containerName}>
+              <div className={styles.userInputWrp}>
+                <br />
+                <input
+                  type="text"
+                  className={styles.inputText}
+                  required
+                  value={name}
+                  onChange={(event) => {
+                    setName(event.target.value);
                   }}
                 />
+                <span className={styles.floatingLabel}>
+                  Which Anime (´･ω･`)?
+                </span>
+              </div>
+            </div>
+
+            <div className={styles.containerQuote}>
+              <div className={styles.userInputWrp}>
+                <br />
+                <input
+                  type="text"
+                  className={styles.inputText}
+                  required
+                  value={quote}
+                  onChange={(event) => {
+                    setQuote(event.target.value);
+                  }}
+                />
+                <span className={styles.floatingLabel}>
+                  Quote that touched your soul ✍(◔◡◔)
+                </span>
+              </div>
+            </div>
+
+            <div className={styles.containerCharFile}>
+              <div
+                style={{ width: "100%", maxWidth: "17rem" }}
+                className={styles.userInputWrp}
+              >
+                <br />
+                <input
+                  type="text"
+                  className={styles.inputText}
+                  required
+                  value={favChar}
+                  onChange={(event) => {
+                    setFavChar(event.target.value);
+                  }}
+                />
+                <span className={styles.floatingLabel}>
+                  Character you simp for (❁´◡`❁)
+                </span>
               </div>
 
-              <div className={styles.containerName}>
-                <div className={styles.userInputWrp}>
-                  <br />
-                  <input
-                    type="text"
-                    className={styles.inputText}
-                    required
-                    value={name}
-                    onChange={(event) => {
-                      setName(event.target.value);
+              <div className={styles.fileInput}>
+                <label htmlFor="img">
+                  {" "}
+                  <Button
+                    variant="contained"
+                    component="span"
+                    // style={{ width: "100%" }}
+                    style={{
+                      backgroundColor: "#FF9F1C",
+                      fontSize: "0.9rem",
+                      color: "black",
+                      fontWeight: "bold",
+                      letterSpacing: "0.9px",
                     }}
-                  />
-                  <span className={styles.floatingLabel}>
-                    Which Anime (´･ω･`)?
-                  </span>
-                </div>
-              </div>
-
-              <div className={styles.containerQuote}>
-                <div className={styles.userInputWrp}>
-                  <br />
-                  <input
-                    type="text"
-                    className={styles.inputText}
-                    required
-                    value={quote}
-                    onChange={(event) => {
-                      setQuote(event.target.value);
-                    }}
-                  />
-                  <span className={styles.floatingLabel}>
-                    Quote that touched your soul ✍(◔◡◔)
-                  </span>
-                </div>
-              </div>
-
-              <div className={styles.containerCharFile}>
-                <div
-                  style={{ width: "100%", maxWidth: "17rem" }}
-                  className={styles.userInputWrp}
-                >
-                  <br />
-                  <input
-                    type="text"
-                    className={styles.inputText}
-                    required
-                    value={favChar}
-                    onChange={(event) => {
-                      setFavChar(event.target.value);
-                    }}
-                  />
-                  <span className={styles.floatingLabel}>
-                    Character you simp for (❁´◡`❁)
-                  </span>
-                </div>
-
-                <div className={styles.fileInput}>
-                  <label htmlFor="ffile">
-                    {" "}
-                    <Button
-                      variant="contained"
-                      component="span"
-                      // style={{ width: "100%" }}
-                      style={{
-                        backgroundColor: "#FF9F1C",
-                        fontSize: "0.9rem",
-                        color: "black",
-                        fontWeight: "bold",
-                        letterSpacing: "0.9px",
-                      }}
-                    >
-                      Upload a Pic
-                    </Button>
-                  </label>
-                  <input
-                    style={{ display: "none" }}
-                    type="file"
-                    id="ffile"
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className={styles.note}>
-                <div className={styles.userInputWrp}>
-                  <br />
-                  <input
-                    type="text"
-                    className={styles.inputText}
-                    required
-                    value={note}
-                    onChange={(event) => {
-                      setNote(event.target.value);
-                    }}
-                  />
-                  <span className={styles.floatingLabel}>
-                    Note ...( ＿ ＿)ノ｜
-                  </span>
-                </div>
-              </div>
-              {/* `````````````````````````` */}
-              <div className={styles.rating}>
-                <Rating
-                  name="highlight-selected-only"
-                  defaultValue={2}
-                  onChange={(e) => setRating(e.target.value)}
-                  IconContainerComponent={IconContainer}
-                  highlightSelectedOnly
-                  size="large"
+                  >
+                    <BsImageFill style={{ fontSize: "30px" }} />
+                  </Button>
+                </label>
+                <input
+                  style={{ display: "none" }}
+                  type="file"
+                  id="img"
+                  name="img"
+                  accept="image/*"
+                  onChange={handleChange}
                 />
               </div>
-              {/* ```````````````````````````` */}
-
-              <div className={styles.containerProgress}>
-                <LinearProgress variant="determinate" value={progress} />
-              </div>
-
-              <Button
-                style={{
-                  backgroundColor: "#FF9F1C",
-                  fontSize: "1rem",
-                  color: "black",
-                  fontWeight: "bold",
-                  letterSpacing: "0.9px",
-                  marginRight: "20px",
-                }}
-                variant="contained"
-                type="submit"
-                onClick={handleUpload}
-              >
-                Upload
-              </Button>
             </div>
-          </Paper>
+            <div className={styles.note}>
+              <div className={styles.userInputWrp}>
+                <br />
+                <input
+                  type="text"
+                  className={styles.inputText}
+                  required
+                  value={note}
+                  onChange={(event) => {
+                    setNote(event.target.value);
+                  }}
+                />
+                <span className={styles.floatingLabel}>
+                  Note ...( ＿ ＿)ノ｜
+                </span>
+              </div>
+              {showImg ? (
+                <img className={styles.showImg} src={showImg} alt="img" />
+              ) : (
+                ""
+              )}
+            </div>
+            {/* `````````````````````````` */}
+            <div className={styles.rating}>
+              <Rating
+                name="highlight-selected-only"
+                defaultValue={2}
+                onChange={(e) => setRating(e.target.value)}
+                IconContainerComponent={IconContainer}
+                highlightSelectedOnly
+                size="large"
+              />
+            </div>
+            {/* ```````````````````````````` */}
+
+            <div className={styles.containerProgress}>
+              <LinearProgress variant="determinate" value={progress} />
+            </div>
+
+            <Button
+              style={{
+                backgroundColor: "#FF9F1C",
+                fontSize: "1rem",
+                color: "black",
+                fontWeight: "bold",
+                letterSpacing: "0.9px",
+                marginRight: "20px",
+              }}
+              variant="contained"
+              type="submit"
+              onClick={handleUpload}
+            >
+              Upload
+            </Button>
+          </div>
         </div>
-      </div>
-    </div>
+      </FlipMove>
+      {/* </div>
+      </div> */}
+    </>
   );
 };
 

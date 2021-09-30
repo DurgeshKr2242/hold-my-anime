@@ -7,6 +7,7 @@ import SideBar from "./Components/Sidebar Left/SideBar";
 import { AuthProvider } from "./AuthContext";
 import RandomQuote from "./Components/RandomQuote/RandomQuote";
 import Search from "./Pages/Search/Search";
+import FriendsSection from "./Components/Sidebar Right/ChooseYourTop";
 function App() {
   return (
     <Router>
@@ -25,6 +26,9 @@ function App() {
                 </div>
                 <div className="col2">
                   <Main />
+                </div>
+                <div className="col3">
+                  <FriendsSection />
                 </div>
               </div>
             </Route>

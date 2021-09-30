@@ -1,6 +1,35 @@
+.mainPostContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 580px;
+}
+@media only screen and (max-width: 1270px) {
+  .mainPostContainer {
+    min-width: 432px;
+  }
+}
+@media only screen and (max-width: 765px) {
+  .mainPostContainer {
+    min-width: 572px;
+  }
+}
+@media only screen and (max-width: 560px) {
+  .mainPostContainer {
+    min-width: 430px;
+  }
+}
+@media only screen and (max-width: 435px) {
+  .mainPostContainer {
+    min-width: 390px;
+  }
+}
+
 .newPostButton {
-  min-width: 600px;
-  padding: 10px;
+  /* min-width: 600px; */
+  width: 100%;
+  padding: 9px;
   border: 1px solid rgb(99, 96, 96);
   border-radius: 20px;
   outline: none;
@@ -11,6 +40,8 @@
   /* background-color: #1f7e74; */
   background-color: white;
   color: rgb(99, 96, 96);
+  font-size: 0.8rem;
+  /* min-width: 500px; */
 }
 .newPostButton:hover,
 .newPostButton:focus {
@@ -21,5 +52,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-size: 0.8rem;
   margin-top: 15px;
+  width: 100%;
 }

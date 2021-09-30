@@ -152,11 +152,11 @@ function LoginSignup() {
         <Button
           variant="contained"
           style={{
-            backgroundColor: "#FF9F1C",
-            fontSize: "0.9rem",
+            backgroundColor: "rgb(197, 189, 189)",
+            fontSize: "0.7em",
             color: "black",
-            fontWeight: "bold",
-            letterSpacing: "0.9px",
+            fontWeight: "900",
+            letterSpacing: "0.6px",
           }}
           onClick={() => auth.signOut()}
         >
@@ -169,10 +169,10 @@ function LoginSignup() {
             onClick={() => setOpenSignIn(true)}
             style={{
               backgroundColor: "#FF9F1C",
-              fontSize: "0.9rem",
+              fontSize: "0.7em",
               color: "black",
-              fontWeight: "bold",
-              letterSpacing: "0.9px",
+              fontWeight: "900",
+              letterSpacing: "0.6px",
               marginRight: "20px",
             }}
           >
@@ -183,10 +183,10 @@ function LoginSignup() {
             onClick={() => setOpen(true)}
             style={{
               backgroundColor: "#FF9F1C",
-              fontSize: "0.9rem",
+              fontSize: "0.7em",
               color: "black",
-              fontWeight: "bold",
-              letterSpacing: "0.9px",
+              fontWeight: "900",
+              letterSpacing: "0.6px",
             }}
           >
             SignUp

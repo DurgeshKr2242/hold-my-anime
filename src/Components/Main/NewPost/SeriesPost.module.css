@@ -1,4 +1,4 @@
-.backdrop {
+/* .backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -7,27 +7,31 @@
   background: rgba(51, 50, 50, 0.555);
   display: grid;
   place-items: center;
-  transition: ease-in 3s;
+  transition: ease-in 0.7s;
   visibility: hidden;
   z-index: -1;
+  padding-top: 40px;
 }
 .showBackdrop {
   visibility: visible;
   z-index: 10;
-}
+} */
 
-.backdropContainer {
+/* .backdropContainer {
   color: black;
-}
+} */
 
 .mainContainer {
-  padding: 2rem;
+  overflow-y: scroll;
+  padding: 0.8rem 2rem 1rem 1rem;
   background-color: #e71d36;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /* align-items: center; */
-  min-width: 500px;
+  /* min-width: 500px; */
+  max-height: 400px;
+  box-sizing: border-box;
+  margin-top: 10px;
+  transition: linear 1s;
 }
 
 .containerHeader {
@@ -70,6 +74,14 @@
   margin-right: 3rem;
   margin-top: 1.2rem;
 }
+
+.showImg {
+  box-sizing: border-box;
+  max-width: 470px;
+  max-height: 370px;
+  margin-bottom: 10px;
+}
+
 .containerProgress {
   margin: 2.2rem 0;
 }
@@ -120,4 +132,20 @@
   align-items: center;
 }
 
+@media only screen and (max-width: 435px) {
+  /* .userInputWrp .inputText {
+    font-size: 0.5rem;
+  }
+  .userInputWrp .inputText:focus {
+    font-size: 0.5rem;
+  } */
+  .userInputWrp .floatingLabel {
+    position: absolute;
+    font-size: 0.9rem;
+    pointer-events: none;
+    top: 1.8rem;
+    left: 1rem;
+    transition: 0.2s ease all;
+  }
+}
 /* ```````````````````````````````````````````````````````````` */
